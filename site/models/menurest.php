@@ -105,7 +105,7 @@ public function getItemCategories($id){
 	$count = 1;
 	echo '<div class="col-md-12">';
 	echo '<div class="dropdown">';
-    echo '<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Menu';
+    echo '<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Menu ';
     echo '<span class="caret"></span></button>';
     echo '<ul class="dropdown-menu">';
 	foreach($categories as $category){
