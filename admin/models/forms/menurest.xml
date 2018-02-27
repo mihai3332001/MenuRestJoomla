@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+		<field
+				name="id"
+				type="hidden"
+				/>
+		<field
+				name="content"
+				type="text"
+				label="COM_MENUREST_MENUREST_CONTENT_LABEL"
+				description="COM_MENUREST_MENUREST_CONTENT_DESC"
+				size="40"
+				class="inputbox"
+				default=""
+				/>
+
+	<field
+    name="catName"
+    type="sql"
+    default="10"
+    label="COM_MENUREST_MENUREST_CATEGORY_LABEL"
+	query="SELECT id AS value, catName FROM #__menurest_categories"
+	key_field="value"
+	value_field="catName"
+    />
+		<field
+				name="price"
+				type="text"
+				label="COM_MENUREST_MENUREST_PRICE_LABEL"
+				description="COM_MENUREST_MENUREST_PRICE_DESC"
+				size="40"
+				class="inputbox"
+				default=""
+				/>
+		<field
+				name="modalName"
+				type="text"
+				label="COM_MENUREST_MENUREST_MODAL_LABEL"
+				description="COM_MENUREST_MENUREST_MODAL_DESC"
+				size="40"
+				class="inputbox"
+				default=""
+				/>
+		<field
+				name="priceID"
+				type="hidden"
+				/>
+		<field
+				name="categoryID"
+				type="hidden"
+				/>
+		<field
+				name="modalID"
+				type="hidden"
+				/>
+	</fieldset>
+</form>
