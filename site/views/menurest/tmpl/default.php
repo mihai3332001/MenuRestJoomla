@@ -10,7 +10,10 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-//JHtml::_('stylesheet', 'https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css');
+$document = JFactory::getDocument(); 
+$document->addStyleSheet('components'.DS.'com_menurest'.DS.'css'.DS.'style.css');
+
+
 //JHtml::_('script', 'https://code.jquery.com/jquery-1.9.1.min.js');
 //JHtml::_('script', 'https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js');
 
@@ -27,6 +30,20 @@ jQuery.noConflict();
    midClick: true
 });
 
+jQuery("document").ready(function(jQuery){
+
+	var nav = jQuery('.dropdown');
+
+	jQuery(window).scroll(function () {
+		if (jQuery(this).scrollTop() > 136) {
+			nav.addClass("f-nav");
+		} else {
+			nav.removeClass("f-nav");
+		}
+	});
+
+});
+
 jQuery(document).ready(function(){
   // Add smooth scrolling to all links
   jQuery(".dropdown-menu li a").on('click', function(event) {
@@ -38,7 +55,7 @@ jQuery(document).ready(function(){
 
       // Store hash
       var hash = this.hash;
-
+	
       // Using jQuery's animate() method to add smooth page scroll
       // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
       jQuery('html, body').animate({
