@@ -46,6 +46,7 @@ class MenuRestViewMenuRests extends JViewLegacy
 
 			return false;
 		}
+		$this->canDo = JHelperContent::getActions('com_menurest');
 		//var_dump($this->items);
 		//echo '<input type="hidden" name="id" value=" '. $modalID  . '" />';
 		// Set the toolbar
@@ -55,6 +56,10 @@ class MenuRestViewMenuRests extends JViewLegacy
 		
 		// Set the document
 		$this->setDocument();
+		if (JFactory::getUser()->authorise('core.admin', 'com_menurest')) 
+    {
+	JToolBarHelper::preferences('com_menurest');
+   }
 	}
 // include JButtonLink so we can extend it
 
@@ -80,12 +85,22 @@ class MenuRestViewMenuRests extends JViewLegacy
 		{
 			$title .= "<span style='font-size: 0.5em; vertical-align: middle;'>(" . $this->pagination->total . ")</span>";
 		}
-
+if ($this->canDo->get('core.create')) 
+		{
+			JToolBarHelper::addNew('menurest.add', 'JTOOLBAR_NEW');
+		}
+		if ($this->canDo->get('core.edit')) 
+		{
+			JToolBarHelper::editList('menurest.edit', 'JTOOLBAR_EDIT');
+		}
+		if ($this->canDo->get('core.delete')) 
+		{
+			JToolBarHelper::deleteList('', 'menurest.delete', 'JTOOLBAR_DELETE');
+		}
 		JToolBarHelper::title($title, 'menurests');
-		JToolbarHelper::addNew('menurest.add');
+
 		JToolbarHelper::addNew('menurestcategories.add', "Add Category");
-		JToolbarHelper::editList('menurest.edit');
-		JToolbarHelper::deleteList('', 'menurest.delete');
+
 	}
 	protected function setDocument() 
 	{

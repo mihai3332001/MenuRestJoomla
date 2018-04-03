@@ -40,7 +40,7 @@ defined('_JEXEC') or die('Restricted Access');
 					$link = JRoute::_('index.php?option=com_menurest&task=menurestcategory.edit&id=' . $row->id);
 					?>
                     
-                    <input type="hidden" name="id" value="<?php echo $row->id; ?>" /> 
+                  
 					<tr>
 						<td>
 							<?php echo $this->pagination->getRowOffset($i); ?>
@@ -54,7 +54,8 @@ defined('_JEXEC') or die('Restricted Access');
                             </a>
 						</td>
                          <td align="center">
-							<?php echo $row->id; ?>
+							<?php echo $row->id;  ?>
+                              <input type="hidden" name="test" value="<?php echo $row->id; ?>" /> 
 						</td>
 					</tr>
 				<?php endforeach; ?>

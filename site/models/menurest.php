@@ -51,7 +51,7 @@ protected function getListQuery()
         
 		$db = JFactory::getDBO();
 		$query = $db->getQuery(true);
-		$query->select(array('menu.ID', 'menu.categoryID', 'menu.priceID', 'menu.modalID', 'menu.content', 'menuPrice.id', 'menuPrice.price', 'menuCat.id', 'menuCat.catName', 'menuModal.id', 'menuModal.modalName'));
+		$query->select(array('menu.ID', 'menu.categoryID', 'menu.priceID', 'menu.modalID', 'menu.content', 'menu.celery', 'menu.cereals' , 'menu.crustaceans' , 'menu.eggs' , 'menu.fish' , 'menu.lupin' , 'menu.milk' , 'menu.molluscs' , 'menu.nuts' , 'menu.peanuts' , 'menu.soybeans', 'menu.mustard', 'menu.sesame', 'menu.sulphites' , 'menu.vegetarian', 'menu.vegan' , 'menuPrice.id', 'menuPrice.price', 'menuCat.id', 'menuCat.catName', 'menuModal.id', 'menuModal.modalName'));
 		$query->from('#__menurest AS menu');
 		$query->join('INNER', '#__menurest_price AS menuPrice ON (menu.priceID = menuPrice.id)') ;
 		$query->join('LEFT', '#__menurest_categories AS menuCat ON (menu.categoryID = menuCat.id)') ;
@@ -132,23 +132,53 @@ public function getItemCategories($id){
 	//foreach ($categories as $category2) {
 		//$tab_active = ($category2->id == $current_category) ? "active" : '';
    	//echo '<div id="' .$category2->id .'" class="tab-pane fade in '  .$tab_active . '">';
-		//var_dump(in_array($messages));
+		//var_dump($messages);
 	foreach($messages as $key=>$val){
 
 		if($val->categoryID == $category->id){
 			if(!empty($val->content)){	
 		echo '<div class="col-md-4">';	
      echo '<div class="menu-item-text"><span>' . $val->content . '</span>';
-	echo ' <a href="#test-popup' . $count . '" class="open-popup-link"><i class="fa fa-info-circle"></i></a>';
+
 	  echo '</div><span class="menu-item-price">' . $val->price .' € </span> '; 
 
 	echo '<div id="test-popup' . $count . '" class="white-popup mfp-hide">';
 	echo '<div class="modalpopup">';
-  	echo "test";
-echo '</div>';
-echo '</div>';
-echo '<div class="menu-item-description">';
+	
+	$allegrien = ($val->celery == 1) ? '<div class="allegrien"><img src="components/com_menurest/img/celery.png" /> <br />Celery</div>' : '';
+	$allegrien .= ($val->cereals == 1) ? '<div class="allegrien"><img src="components/com_menurest/img/cereals.png" /> <br />Cereals</div>' : '';
+	$allegrien .= ($val->crustaceans == 1) ? '<div class="allegrien"><img src="components/com_menurest/img/crustacena.png" /> <br />Crustaceans</div>' : '';
+	$allegrien .= ($val->eggs == 1) ? '<div class="allegrien"><img src="components/com_menurest/img/eggs.png" /> <br />Eggs</div>' : '';
+	$allegrien .= ($val->fish == 1) ? '<div class="allegrien"><img src="components/com_menurest/img/fish.png" /> <br />Fish</div>' : '';
+	$allegrien .= ($val->lupin == 1) ? '<div class="allegrien"><img src="components/com_menurest/img/lupin.png" /> <br />Lupin</div>' : '';
+	$allegrien .= ($val->milk == 1) ? '<div class="allegrien"><img src="components/com_menurest/img/milk.png" /> <br />Milk</div>' : '';
+	$allegrien .= ($val->molluscs == 1) ? '<div class="allegrien"><img src="components/com_menurest/img/molluscs.png" /> <br />Molluscs</div>' : '';
+	$allegrien .= ($val->nuts == 1) ? '<div class="allegrien"><img src="components/com_menurest/img/nuts.png" /> <br />Nuts</div>' : '';
+	$allegrien .= ($val->peanuts == 1) ? '<div class="allegrien"><img src="components/com_menurest/img/Peanut.png" /> <br />Peanuts</div>' : '';
+	$allegrien .= ($val->mustard == 1) ? '<div class="allegrien"><img src="components/com_menurest/img/mustard.png" /> <br />Mustard</div>' : '';
+	$allegrien .= ($val->soybeans == 1) ? '<div class="allegrien"><img src="components/com_menurest/img/soya.png" /> <br />Soybeans</div>' : '';
+	$allegrien .= ($val->sesame == 1) ? '<div class="allegrien"><img src="components/com_menurest/img/sesame.png" /> <br />Sesame</div>' : '';
+	$allegrien .= ($val->sulphites == 1) ? '<div class="allegrien"><img src="components/com_menurest/img/sul.png" /> <br />Sulphites</div>' : '';
+	//$allegrien .= '<div class="vegetarian">';
+	$allegrien .= ($val->vegetarian == 1) ? '<div class="allegrien"><img src="components/com_menurest/img/vegetarian.png" /> <br />Vegetarian</div>' : '';
+	$allegrien .= ($val->vegan == 1) ? '<div class="allegrien"><img src="components/com_menurest/img/vegan.png" /> <br />Vegan</div>' : '';
+	//$allegrien .= '</div>';
+	//var_dump($allegrien);
+	if($allegrien != null){
+		echo $allegrien;
+	}
+	else{
+		echo "No known allergens contained.";
+	}
+
+	
+
+	
+	echo '</div>';
+	echo '</div>';
+	echo '<div class="menu-item-description">';
   	echo $val->modalName;
+		echo ' <a href="#test-popup' . $count . '" class="open-popup-link"><i class="fa fa-info-circle"></i></a>';
 echo '</div>';
 $count++;
 	 echo '</div>';

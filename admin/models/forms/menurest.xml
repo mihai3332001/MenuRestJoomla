@@ -42,6 +42,22 @@
 				class="inputbox"
 				default=""
 				/>
+		<field name="celery" type="checkbox" label="Celery" description="Celery" value="1" default="0"/>
+		<field name="cereals" type="checkbox" label="Cereals" description="Cereals" value="1" />
+		<field name="crustaceans" type="checkbox" label="Crustaceans" description="Crustaceans" value="1" />
+		<field name="eggs" type="checkbox" label="Eggs" description="Eggs" value="1" />
+		<field name="fish" type="checkbox" label="Fish" description="Fish" value="1" />
+		<field name="lupin" type="checkbox" label="Lupin" description="Lupin" value="1" />
+		<field name="milk" type="checkbox" label="Milk" description="Milk" value="1" />
+		<field name="molluscs" type="checkbox" label="Molluscs" description="Molluscs" value="1" />
+		<field name="nuts" type="checkbox" label="Nuts" description="Nuts" value="1" />
+		<field name="peanuts" type="checkbox" label="Peanuts" description="Peanuts" value="1" />
+		<field name="mustard" type="checkbox" label="Mustard" description="Mustard" value="1" />
+		<field name="soybeans" type="checkbox" label="Soybeans" description="Soybeans" value="1" />
+		<field name="sesame" type="checkbox" label="Sesame" description="Sesame" value="1" />
+		<field name="sulphites" type="checkbox" label="Sulphites" description="Sulphites" value="1" />
+		<field name="vegetarian" type="checkbox" label="Vegetarian" description="Vegetarian" value="1" />
+		<field name="vegan" type="checkbox" label="Vegan" description="Vegan" value="1" />
 		<field
 				name="priceID"
 				type="hidden"

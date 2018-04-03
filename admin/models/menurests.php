@@ -41,7 +41,7 @@ class MenuRestModelMenuRests extends JModelList
 	{
 	    $db    = JFactory::getDBO();
 		$query = $db->getQuery(true);
-		$query->select(array('menu.id', 'menu.categoryID', 'menu.priceID', 'menu.modalID', 'menu.content', 'menuPrice.ID', 'menuPrice.price', 'menuCat.ID', 'menuCat.catName', 'menuModal.ID', 'menuModal.modalName'));
+		$query->select(array('menu.ID', 'menu.categoryID', 'menu.priceID', 'menu.modalID', 'menu.content', 'menu.celery', 'menu.cereals' , 'menu.crustaceans' , 'menu.eggs' , 'menu.fish' , 'menu.lupin' , 'menu.milk' , 'menu.molluscs' , 'menu.nuts' , 'menu.peanuts' , 'menu.soybeans', 'menu.mustard', 'menu.sesame', 'menu.sulphites' , 'menu.vegetarian', 'menu.vegan' , 'menuPrice.id', 'menuPrice.price', 'menuCat.id', 'menuCat.catName', 'menuModal.id', 'menuModal.modalName'));
 		$query->from('#__menurest AS menu');
 		$query->join('INNER', '#__menurest_price AS menuPrice ON (menu.priceID = menuPrice.ID)') ;
 		$query->join('LEFT', '#__menurest_categories AS menuCat ON (menu.categoryID = menuCat.ID)') ;

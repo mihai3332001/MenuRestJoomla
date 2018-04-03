@@ -24,30 +24,60 @@ class MenuRestControllerMenuRest extends JControllerForm
 	
 
 	 $app = JFactory::getApplication();
-     $id = $app->input->getInt('id');
-	(int) $modalID = $app->input->getInt('modalID');
-	(int) $priceID = $app->input->getInt('priceID');
-	 
-   // var_dump($id);
-  // die(); 
- if(!empty($id)){
-	 $this->Query($id);
-	 $this->modalQuery($modalID);
-	 $this->priceQuery($priceID);
-	 $app->enqueueMessage(JText::_('File deleted.'), 'Success');
-	 $this->setRedirect(JRoute::_('index.php?option=com_menurest', false));
-	 }
+	  $cid = JRequest::getVar('cid', array(), '', 'array');
+     //$id = $app->input->getInt('id');
+	// JArrayHelper::toInteger($id);
 
- }
+if(count($cid) === 1) {
+
+
+foreach ($cid as $id){
+	$menurest  = $this->Query($id);
+	}
+//var_dump($menurest);
+//die();
+   foreach($menurest as $menu){
+	  (int) $modalID = $menu->modalID;
+	 (int) $id = $menu->id; 	  
+	(int) $priceID = $menu->priceID;
+		 $model = $this->getModel();
+	  $model->delete($menu->id);
+	  $this->modalQuery($menu->modalID);
+	 $this->priceQuery($menu->priceID);	 
+	  $app->enqueueMessage(JText::_('File deleted.'), 'Success');
+	 $this->setRedirect(JRoute::_('index.php?option=com_menurest', false));	
+	   }    
+
+ }else {
+
+ 	foreach ($cid as $id){
+	$menurest = $this->Query($id);
+	 foreach($menurest as $menu){
+
+	  (int) $modalID = $menu->modalID;
+	 (int) $id = $menu->id; 	  
+	(int) $priceID = $menu->priceID;
+		 $model = $this->getModel();
+	  $model->delete($menu->id);
+	  $this->modalQuery($menu->modalID);
+	 $this->priceQuery($menu->priceID);	 
+	   } 
+	   	  $app->enqueueMessage(JText::_('File deleted.'), 'Success');
+	 $this->setRedirect(JRoute::_('index.php?option=com_menurest', false));	   
+	}
+
+}	 	
 	 
-	 	
+}
 	public function Query ($id){
-		 $db = JFactory::getDBO();
+$db = JFactory::getDBO();
 		$query = $db->getQuery(true);
-		$query  = "DELETE FROM #__menurest WHERE id  = $id";
-		$db->setQuery($query);
-		$result = $db->execute();
-        return $result;		  
+		$query->select('*');
+		$query->from('#__menurest');
+		$query->where('id' . '='. $id);
+		$db->setQuery((string) $query);
+		$messages = $db->loadObjectList();
+        return $messages;	
 		}
 		
 		public function priceQuery ($priceID){

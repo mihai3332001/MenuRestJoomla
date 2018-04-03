@@ -30,6 +30,7 @@ class MenuRestModelMenuRest extends JModelAdmin
 	 */
 	 public function save($data)
 {
+	
 	if(empty($data['id'])){
 		$saveCategory = array('catName' => $data['catName']);
 		$savePrice = array('price' => $data['price']);
@@ -37,9 +38,24 @@ class MenuRestModelMenuRest extends JModelAdmin
 		$tableCategories = $this->getTableCategories();
 		$tablePrice = $this->getTablePrice();
 		$tableModal = $this->getTableModal();
+		
+	$data['celery'] = (empty($data['celery'])) ? 0 : 1;
+	$data['cereals'] = (empty($data['cereals'])) ? 0 : 1;
+	$data['crustaceans'] = (empty($data['crustaceans'])) ? 0 : 1;
+	$data['eggs'] = (empty($data['eggs'])) ? 0 : 1;
+	$data['fish'] = (empty($data['fish'])) ? 0 : 1;
+	$data['lupin'] = (empty($data['lupin'])) ? 0 : 1;
+	$data['milk'] = (empty($data['milk'])) ? 0 : 1;
+	$data['molluscs'] = (empty($data['molluscs'])) ? 0 : 1;
+	$data['nuts'] = (empty($data['nuts'])) ? 0 : 1;
+	$data['peanuts'] = (empty($data['peanuts'])) ? 0 : 1;
+	$data['soybeans'] = (empty($data['soybeans'])) ? 0 : 1;
+	$data['mustard'] = (empty($data['mustard'])) ? 0 : 1;
+	$data['sesame'] = (empty($data['sesame'])) ? 0 : 1;
+	$data['sulphites'] = (empty($data['sulphites'])) ? 0 : 1;
+	$data['vegetarian'] = (empty($data['vegetarian'])) ? 0 : 1;
+	$data['vegan'] = (empty($data['vegan'])) ? 0 : 1;
 
-	
-	
 	 if (!$tablePrice->bind($savePrice))
     {
         $this->setError(JText::sprintf('USERS PROFILE BIND FAILED', $user->getError()));
@@ -88,7 +104,23 @@ class MenuRestModelMenuRest extends JModelAdmin
 	 $user = JFactory::getUser();
 	  return $user->id;
 } else {
-
+	$data['celery'] = (empty($data['celery'])) ? 0 : 1;
+	$data['cereals'] = (empty($data['cereals'])) ? 0 : 1;
+	$data['crustaceans'] = (empty($data['crustaceans'])) ? 0 : 1;
+	$data['eggs'] = (empty($data['eggs'])) ? 0 : 1;
+	$data['fish'] = (empty($data['fish'])) ? 0 : 1;
+	$data['lupin'] = (empty($data['lupin'])) ? 0 : 1;
+	$data['milk'] = (empty($data['milk'])) ? 0 : 1;
+	$data['molluscs'] = (empty($data['molluscs'])) ? 0 : 1;
+	$data['nuts'] = (empty($data['nuts'])) ? 0 : 1;
+	$data['peanuts'] = (empty($data['peanuts'])) ? 0 : 1;
+	$data['soybeans'] = (empty($data['soybeans'])) ? 0 : 1;
+	$data['mustard'] = (empty($data['mustard'])) ? 0 : 1;
+	$data['sesame'] = (empty($data['sesame'])) ? 0 : 1;
+	$data['sulphites'] = (empty($data['sulphites'])) ? 0 : 1;
+	$data['vegetarian'] = (empty($data['vegetarian'])) ? 0 : 1;
+	$data['vegan'] = (empty($data['vegan'])) ? 0 : 1;
+	
    // $userId = (!empty($data['id'])) ? $data['id'] : (int)$this->getState('user.id');
   	 $user = JFactory::getUser();
 

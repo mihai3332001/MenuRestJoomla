@@ -36,17 +36,20 @@ echo JLayoutHelper::render(
 			<th width="2%">
 				<?php echo JHtml::_('grid.checkall'); ?>
 			</th>
-			<th width="30%">
+			<th width="10%">
 					<?php echo JHtml::_('grid.sort', 'COM_MENUREST_MENURESTS_NAME', 'content', $listDirn, $listOrder); ?>
 			</th>
-			<th width="20%">
+			<th width="5%">
 				<?php echo JHtml::_('grid.sort', 'COM_MENUREST_CATEGORY', 'menuCat.catName', $listDirn, $listOrder); ?>
 			</th>
-			<th width="20%">
+			<th width="5%">
 				<?php echo JHtml::_('grid.sort', 'COM_MENUREST_PRICE', 'price', $listDirn, $listOrder); ?>
 			</th>
-            <th width="20%">
+            <th width="10%">
 				<?php echo JHtml::_('grid.sort', 'COM_MENUREST_MODAL', 'menuModal.modalName', $listDirn, $listOrder); ?>
+			</th>
+             <th width="10%">
+				<?php echo JText::_('Allegrien'); ?>
 			</th>
              <th width="2%">
 				<?php echo JHtml::_('grid.sort', 'COM_MENUREST_ID', 'menu.id', $listDirn, $listOrder); ?>
@@ -90,6 +93,25 @@ echo JLayoutHelper::render(
                        <td align="center">
 							<?php echo $row->modalName; ?>
 						</td>
+                        <td align="center">
+							<?php echo ($row->celery == 1) ? 'Celery' :  '' ; ?>
+                            <?php echo ($row->cereals == 1) ? 'Cereals' :  '' ; ?>
+                            <?php echo ($row->crustaceans == 1) ? 'Crustaceans' :  '' ; ?>
+                            <?php echo ($row->eggs == 1) ? 'Eggs' :  '' ; ?>
+                            <?php echo ($row->fish == 1) ? 'Fish' :  '' ; ?>
+                            <?php echo ($row->lupin == 1) ? 'Lupin' :  '' ; ?>
+                            <?php echo ($row->milk == 1) ? 'Milk' :  '' ; ?>
+                            <?php echo ($row->molluscs == 1) ? 'Molluscs' :  '' ; ?>
+                            <?php echo ($row->nuts == 1) ? 'Nuts' :  '' ; ?>
+                            <?php echo ($row->peanuts == 1) ? 'Peanuts' :  '' ; ?>
+                            <?php echo ($row->mustard == 1) ? 'Mustard' :  '' ; ?>
+                            <?php echo ($row->soybeans == 1) ? 'Soybeans' :  '' ; ?>
+                            <?php echo ($row->sesame == 1) ? 'Sesame' :  '' ; ?>
+                            <?php echo ($row->sulphites == 1) ? 'Sulphites' :  '' ; ?>
+                            <?php echo ($row->vegetarian == 1) ? 'Vegetarian' :  '' ; ?>
+                            <?php echo ($row->vegan == 1) ? 'Vegan' :  '' ; ?>
+						</td>
+
                          <td align="center">
 							<?php echo $row->id; ?>
 						</td>

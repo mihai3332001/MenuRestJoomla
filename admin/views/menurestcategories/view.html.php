@@ -37,10 +37,15 @@ class MenuRestViewMenuRestCategories extends JViewLegacy
 
 			return false;
 		}
+		$this->canDo = JHelperContent::getActions('com_menurest');
 		// Set the toolbar
 		$this->addToolBar();
 		// Display the template
 		parent::display($tpl);
+	if (JFactory::getUser()->authorise('core.admin', 'com_menurest')) 
+    {
+	JToolBarHelper::preferences('com_menurest');
+   }
 	}
 	
 
@@ -54,9 +59,20 @@ class MenuRestViewMenuRestCategories extends JViewLegacy
 	protected function addToolBar()
 	{
 		JToolbarHelper::title(JText::_('COM_MENUREST_MANAGER_CATEGORIES'));
-		JToolbarHelper::addNew('menurestcategory.add');
-		JToolbarHelper::editList('menurestcategory.edit');
-		JToolbarHelper::deleteList('','menurestcategory.delete');
+		if ($this->canDo->get('core.create')) 
+		{
+			JToolBarHelper::addNew('menurestcategory.add', 'JTOOLBAR_NEW');
+		}
+		if ($this->canDo->get('core.edit')) 
+		{
+			JToolBarHelper::editList('menurestcategory.edit', 'JTOOLBAR_EDIT');
+		}
+		if ($this->canDo->get('core.delete')) 
+		{
+			JToolBarHelper::deleteList('', 'menurestcategory.delete', 'JTOOLBAR_DELETE');
+		}
+	
+	
 		JToolbarHelper::cancel(
 			'menurest.cancel',
 		'JTOOLBAR_CLOSE'

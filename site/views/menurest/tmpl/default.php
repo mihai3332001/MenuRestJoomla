@@ -11,7 +11,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 $document = JFactory::getDocument(); 
-$document->addStyleSheet('components'.DS.'com_menurest'.DS.'css'.DS.'style.css');
+$document->addStyleSheet('components/com_menurest/css/style.css');
 
 
 //JHtml::_('script', 'https://code.jquery.com/jquery-1.9.1.min.js');

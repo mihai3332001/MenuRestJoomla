@@ -18,3 +18,8 @@ $controller->execute(JFactory::getApplication()->input->get('task'));
 
 // Redirect if set by the controller
 $controller->redirect();
+
+if (!JFactory::getUser()->authorise('core.manage', 'com_menurest')) 
+{
+	throw new Exception(JText::_('JERROR_ALERTNOAUTHOR'));
+}

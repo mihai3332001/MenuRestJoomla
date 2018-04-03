@@ -23,7 +23,7 @@ class MenuRestViewMenuRest extends JViewLegacy
 	 * @var         form
 	 */
 	protected $form = null;
-
+protected $canDo;
 	/**
 	 * Display the Hello World view
 	 *
@@ -36,6 +36,7 @@ class MenuRestViewMenuRest extends JViewLegacy
 		// Get the Data
 		$this->form = $this->get('Form');
 		$this->item = $this->get('Item');
+		$this->canDo = JHelperContent::getActions('com_menurest', 'menurest', $this->item->id);
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
 		{
@@ -71,19 +72,35 @@ class MenuRestViewMenuRest extends JViewLegacy
 		$isNew = ($this->item->id == 0);
 		if ($isNew)
 		{
-			$title = JText::_('COM_MENUREST_MANAGER_MENUREST_NEW');
+			if ($this->canDo->get('core.create')) 
+			{
+				JToolBarHelper::title(JText::_('COM_MENUREST_MANAGER_MENUREST_NEW'));
+				JToolBarHelper::save('menurest.save', 'JTOOLBAR_SAVE');
+				JToolBarHelper::custom('menurest.save2new', 'save-new.png', 'save-new_f2.png',
+				                       'JTOOLBAR_SAVE_AND_NEW', false);
+			}
+			JToolBarHelper::cancel('menurest.cancel', 'JTOOLBAR_CANCEL');
 		}
 		else
 		{
-			$title = JText::_('COM_MENUREST_MANAGER_MENUREST_EDIT');
+			JToolBarHelper::title(JText::_('COM_MENUREST_MANAGER_MENUREST_EDIT'));
+			if ($this->canDo->get('core.edit'))
+			{
+				// We can save the new record
+				JToolBarHelper::save('menurest.save', 'JTOOLBAR_SAVE');
+ 
+				// We can save this record, but check the create permission to see
+				// if we can return to make a new one.
+				if ($this->canDo->get('core.create')) 
+				{
+					JToolBarHelper::custom('menurest.save2new', 'save-new.png', 'save-new_f2.png',
+					                       'JTOOLBAR_SAVE_AND_NEW', false);
+				}
+				JToolBarHelper::cancel('menurest.cancel', 'JTOOLBAR_CANCEL');
+			}
 		}
 
-		JToolbarHelper::title($title, 'menurest');
-		JToolbarHelper::save('menurest.save');
-		JToolbarHelper::cancel(
-			'menurest.cancel',
-			$isNew ? 'JTOOLBAR_CANCEL' : 'JTOOLBAR_CLOSE'
-		);
+		
 	}
 	protected function setDocument() 
 	{
@@ -92,5 +109,6 @@ class MenuRestViewMenuRest extends JViewLegacy
 		$document->setTitle($isNew ? JText::_('COM_MENUREST_MENUREST_CREATING') :
                 JText::_('COM_MENUREST_MENUREST_EDITING'));
 	}
+	
 }
 

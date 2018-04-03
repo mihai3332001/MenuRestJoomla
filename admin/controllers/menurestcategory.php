@@ -20,21 +20,17 @@ class MenuRestControllerMenuRestCategory extends JControllerForm
 {
 	
 	 public function delete() {
-	 $app = JFactory::getApplication();
-     $id = $app->input->getInt('id');
+	 //$app = JFactory::getApplication();
+    $id = JRequest::getVar('cid', array(), '', 'array');
+	JArrayHelper::toInteger($id);
 
        
-  //var_dump($id);
+ // var_dump($id);
 //die();
         // Get the model
         $model = $this->getModel();
-		if(!empty($this->query($id))){
-			$app->enqueueMessage(JText::_('Cannot delete categories. First delete products.'), 'error');
-			}
-			else {
-			$return = $model->delete($id);
-		
-				}
+		$model->delete($id);
+	
 			
 
         // Redirect to the list screen.
@@ -42,15 +38,5 @@ class MenuRestControllerMenuRestCategory extends JControllerForm
 
     }
 	
-	public function query ($id){
-		 $db = JFactory::getDBO();
-		$query = $db->getQuery(true);
-		$query->select('categoryID');
-		$query->from('#__menurest');
-		$query->where('categoryID' . '=' . $id);
-		$db->setQuery($query);
-		$messages = $db->loadResult();
-        return $messages;		  
-		}
 	
 }

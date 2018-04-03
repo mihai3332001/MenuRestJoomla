@@ -78,3 +78,20 @@ h3.menu-item-title:after {
     margin: 20px auto;
 }
 /*************** End Changes to Modal Popup Box ***************/
+
+.vegetarian{
+	padding-top:20px;
+	color:#bdb76b;
+	font-weight:bold;	
+}
+
+.allegrien{
+	display: inline-block;
+	padding-right:20px;
+	text-align:center;
+}
+
+.allegrien img{
+	margin: 0 auto;
+    display: block;
+}
